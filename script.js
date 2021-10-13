@@ -7,6 +7,9 @@ const calendar = document.querySelector('.calendar');
 
 function load(){
     const data = new Date();
+    if(nav !== 0){
+        data.setMonth(new Date().getMonth() + nav);
+    }
 
     const day = data.getDate();
     const month = data.getMonth();
@@ -14,6 +17,7 @@ function load(){
 
     const firstDayOfMonth = new Date(year, month, 1);
     const daysInMounth = new Date(year, month+1, 0).getDate();
+
     const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
         weekday: 'long',
         year: 'numeric',
@@ -21,9 +25,14 @@ function load(){
         day: 'numeric',
     });
     const paddingDays = weekDays.indexOf(dateString.split(', ')[0]);
-    console.log(paddingDays);
+    //console.log(paddingDays);
 
-    for(let i = 1; i < paddingDays + daysInMounth; i++){
+    document.querySelector('.monthDisplay').innerText = `${data.toLocaleDateString('en-us', {
+        month: 'long'
+    })} ${year}`;
+    calendar.innerHTML = '';
+
+    for(let i = 1; i <= paddingDays + daysInMounth; i++){
         const daySquare = document.createElement('div');
         daySquare.classList.add('day');
         if(i > paddingDays) {
@@ -37,4 +46,18 @@ function load(){
         calendar.appendChild(daySquare);
     }
 }
+
+function initButtons(){
+    const nextBtn = document.querySelector('#nextButton');
+    const backBtn = document.querySelector('#backButton');
+    nextBtn.addEventListener('click', () => {
+        nav++;
+        load();
+    });
+    backBtn.addEventListener('click', () => {
+        nav--;
+        load();
+    });
+}
+initButtons();
 load();

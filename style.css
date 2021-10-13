@@ -20,7 +20,8 @@ button{
     outline: none;
     padding: 5px;
     border-radius: 5px;
-    color: black;
+    color: white;
+    background-color: #92a1d1;
 }
 .header{
     padding: 10px;
@@ -29,9 +30,6 @@ button{
     font-family: sans-serif;
     display: flex;
     justify-content: space-between;
-}
-.switchMonth{
-    background-color: #92a1d1;
 }
 .weekdays{
     width: 100%;
@@ -63,4 +61,7 @@ button{
 .day:hover{
     background-color: #e8f4fa;
     transition: 0.2s ease-in-out;
+}
+.padding{
+    opacity: 0;
 }
